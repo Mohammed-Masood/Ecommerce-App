@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "357359341465",
+    "project_id": "ecommerceapp-52667",
+    "storage_bucket": "ecommerceapp-52667.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:357359341465:android:a8be6762a9f789c7840d08",
+        "android_client_info": {
+          "package_name": "com.mohammed.sellersapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "357359341465-ftj3u2c8t3ih6qi1r2o43lse5236husv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCafWBWaWL0PnYoNh8-oHcMRBXSPJjmCTY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "357359341465-ftj3u2c8t3ih6qi1r2o43lse5236husv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
