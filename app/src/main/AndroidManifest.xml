@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SellersApp">
-        <activity android:name=".Create_Category"></activity>
+        <activity android:name=".Add_Item"></activity>
+        <activity android:name=".Create_Category" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

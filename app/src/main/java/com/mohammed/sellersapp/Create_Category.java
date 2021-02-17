@@ -137,11 +137,11 @@ public void imageonclick(){
                         progressBar.setVisibility(View.INVISIBLE);
                         errormsg.setText("Success!!!");
 
-                        HashMap<String,String> hashmap = new HashMap<>();
+                        HashMap<String,Object> hashmap = new HashMap<>();
 
                         categorymodel model = new categorymodel(uri.toString());
                         String modelid = root.child(category_name.getText().toString()).getKey();
-                        hashmap.put("Uri",model.getImageurl());
+                        hashmap.put("Uri",model);
                         hashmap.put("CategoryName",modelid);
                         root.child(modelid).child("CategoryFiles").setValue(hashmap);
 
