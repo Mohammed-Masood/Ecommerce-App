@@ -1,6 +1,7 @@
 package com.mohammed.sellersapp.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.mohammed.sellersapp.Add_new_item;
 import com.mohammed.sellersapp.Model.additemmodel;
 import com.mohammed.sellersapp.Model.categorymodel;
 import com.mohammed.sellersapp.R;
@@ -43,7 +46,14 @@ public class additem extends RecyclerView.Adapter<additem.viewholder> {
     public void onBindViewHolder(@NonNull additem.viewholder holder, int position) {
         Glide.with(context).load(model2.get(position).getImageurl()).into(holder.iv);
         holder.tv.setText(model.get(position).getCategoryname());
-
+        holder.cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, Add_new_item.class);
+                i.putExtra("categoryname",model.get(position).getCategoryname());
+                context.startActivity(i);
+            }
+        });
 
     }
 
@@ -56,12 +66,13 @@ public class additem extends RecyclerView.Adapter<additem.viewholder> {
 
         ImageView iv;
         TextView tv;
-
+        CardView cv;
         public viewholder(@NonNull View itemView) {
             super(itemView);
 
             iv = itemView.findViewById(R.id.additem_iv);
             tv = itemView.findViewById(R.id.additem_tv);
+            cv = itemView.findViewById(R.id.additem_cv);
 
         }
 
