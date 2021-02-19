@@ -143,7 +143,7 @@ public class Add_new_item extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         progressBar.setVisibility(View.INVISIBLE);
-                        errormsg.setText("Success!!!");
+                        errormsg.setText("Item Added Successfully!!");
 
                         HashMap<String,Object> hashmap = new HashMap<>();
 
@@ -189,6 +189,10 @@ public class Add_new_item extends AppCompatActivity {
         return map.getExtensionFromMimeType(cr.getType(uri));
 
     }
+
+
+
+
 
 
 }

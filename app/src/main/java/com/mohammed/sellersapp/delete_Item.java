@@ -12,46 +12,47 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.mohammed.sellersapp.Adapters.additem;
+import com.mohammed.sellersapp.Adapters.displaycategory;
 import com.mohammed.sellersapp.Model.additemmodel;
 import com.mohammed.sellersapp.Model.categorymodel;
 
 import java.util.ArrayList;
 
-public class Add_Item extends AppCompatActivity {
+public class delete_Item extends AppCompatActivity {
 
     RecyclerView rv;
-    ArrayList<additemmodel> models;
-    ArrayList<categorymodel> model2;
+    ArrayList<additemmodel> categoryname;
+    ArrayList<categorymodel> categoryimage;
     DatabaseReference root = FirebaseDatabase.getInstance().getReference("Category");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add__item);
+        setContentView(R.layout.activity_delete__item);
 
-        models = new ArrayList<>();
-        model2 = new ArrayList<>();
-        rv = (RecyclerView) findViewById(R.id.additem_rv);
+        rv = (RecyclerView) findViewById(R.id.deleteitem_selectcategory_rv);
         rv.setHasFixedSize(true);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        categoryname = new ArrayList<>();
+        categoryimage = new ArrayList<>();
 
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                models.clear();
-                model2.clear();
+
+                categoryimage.clear();
+                categoryname.clear();
                 for(DataSnapshot snap:snapshot.getChildren()){
 
-
-                    additemmodel newmodel = snap.child("CategoryFiles").getValue(additemmodel.class);
-                    categorymodel newmodel2 = snap.child("CategoryFiles").child("Uri").getValue(categorymodel.class);
-                    models.add(newmodel);
-                    model2.add(newmodel2);
+                    additemmodel name = snap.child("CategoryFiles").getValue(additemmodel.class);
+                    categorymodel image = snap.child("CategoryFiles").child("Uri").getValue(categorymodel.class);
+                    categoryname.add(name);
+                    categoryimage.add(image);
 
                 }
-               additem adapter = new additem(models,model2,Add_Item.this);
-                rv.setAdapter(adapter);
-                rv.setLayoutManager(new LinearLayoutManager(Add_Item.this));
 
+                displaycategory adapter = new displaycategory(delete_Item.this,categoryname,categoryimage);
+                rv.setAdapter(adapter);
             }
 
             @Override

@@ -14,53 +14,55 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.mohammed.sellersapp.Add_new_item;
 import com.mohammed.sellersapp.Model.additemmodel;
 import com.mohammed.sellersapp.Model.categorymodel;
+import com.mohammed.sellersapp.Model.itemmodel;
 import com.mohammed.sellersapp.R;
+import com.mohammed.sellersapp.delete_item2;
 
 import java.util.ArrayList;
 
-public class additem extends RecyclerView.Adapter<additem.viewholder> {
+public class displaycategory extends RecyclerView.Adapter<displaycategory.viewholder> {
 
-    ArrayList<additemmodel> model;
-    ArrayList<categorymodel> model2;
     Context context;
+    ArrayList<additemmodel> categoryname;
+    ArrayList<categorymodel> categoryimage;
 
-    public additem(ArrayList<additemmodel> model,ArrayList<categorymodel> model2, Context context) {
 
-        this.model = model;
+    public displaycategory(Context context, ArrayList<additemmodel> categoryname, ArrayList<categorymodel> categoryimage) {
         this.context = context;
-        this.model2 = model2;
-
+        this.categoryname = categoryname;
+        this.categoryimage = categoryimage;
     }
 
     @NonNull
     @Override
-    public additem.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View v = inflater.inflate(R.layout.additem_layout,parent,false);
+    public displaycategory.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater infalter = LayoutInflater.from(context);
+        View v = infalter.inflate(R.layout.additem_layout,parent,false);
         return new viewholder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull additem.viewholder holder, int position) {
-        Glide.with(context).load(model2.get(position).getImageurl()).fitCenter().diskCacheStrategy(DiskCacheStrategy.ALL).dontTransform().into(holder.iv);
-        holder.tv.setText(model.get(position).getCategoryname());
+    public void onBindViewHolder(@NonNull displaycategory.viewholder holder, int position) {
+
+        holder.tv.setText(categoryname.get(position).getCategoryname());
+        Glide.with(context).load(categoryimage.get(position).getImageurl()).fitCenter().diskCacheStrategy(DiskCacheStrategy.ALL).dontTransform().into(holder.iv);
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, Add_new_item.class);
-                i.putExtra("categoryname",model.get(position).getCategoryname());
+                Intent i = new Intent(context, delete_item2.class);
+                i.putExtra("catname",categoryname.get(position).getCategoryname());
                 context.startActivity(i);
             }
         });
+
 
     }
 
     @Override
     public int getItemCount() {
-        return model.size();
+        return categoryname.size();
     }
 
     public class viewholder extends RecyclerView.ViewHolder{
@@ -70,15 +72,11 @@ public class additem extends RecyclerView.Adapter<additem.viewholder> {
         CardView cv;
         public viewholder(@NonNull View itemView) {
             super(itemView);
-
             iv = itemView.findViewById(R.id.additem_iv);
             tv = itemView.findViewById(R.id.additem_tv);
             cv = itemView.findViewById(R.id.additem_cv);
-
         }
 
-
     }
-
 
 }

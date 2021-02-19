@@ -12,13 +12,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.mohammed.sellersapp.Adapters.ModifyCategoryAdapter;
 import com.mohammed.sellersapp.Adapters.additem;
 import com.mohammed.sellersapp.Model.additemmodel;
 import com.mohammed.sellersapp.Model.categorymodel;
 
 import java.util.ArrayList;
 
-public class Add_Item extends AppCompatActivity {
+public class ModifyCategory extends AppCompatActivity {
 
     RecyclerView rv;
     ArrayList<additemmodel> models;
@@ -27,11 +28,11 @@ public class Add_Item extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add__item);
+        setContentView(R.layout.activity_modify_category);
 
         models = new ArrayList<>();
         model2 = new ArrayList<>();
-        rv = (RecyclerView) findViewById(R.id.additem_rv);
+        rv = (RecyclerView) findViewById(R.id.recyclerView);
         rv.setHasFixedSize(true);
 
         root.addValueEventListener(new ValueEventListener() {
@@ -48,9 +49,9 @@ public class Add_Item extends AppCompatActivity {
                     model2.add(newmodel2);
 
                 }
-               additem adapter = new additem(models,model2,Add_Item.this);
+                ModifyCategoryAdapter adapter = new ModifyCategoryAdapter(models,model2,ModifyCategory.this);
                 rv.setAdapter(adapter);
-                rv.setLayoutManager(new LinearLayoutManager(Add_Item.this));
+                rv.setLayoutManager(new LinearLayoutManager(ModifyCategory.this));
 
             }
 

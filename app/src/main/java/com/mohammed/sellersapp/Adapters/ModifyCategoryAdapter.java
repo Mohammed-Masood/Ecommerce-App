@@ -17,17 +17,18 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.mohammed.sellersapp.Add_new_item;
 import com.mohammed.sellersapp.Model.additemmodel;
 import com.mohammed.sellersapp.Model.categorymodel;
+import com.mohammed.sellersapp.ModifyCategorypage;
 import com.mohammed.sellersapp.R;
 
 import java.util.ArrayList;
 
-public class additem extends RecyclerView.Adapter<additem.viewholder> {
+public class ModifyCategoryAdapter extends RecyclerView.Adapter<ModifyCategoryAdapter.viewholder> {
 
     ArrayList<additemmodel> model;
     ArrayList<categorymodel> model2;
     Context context;
 
-    public additem(ArrayList<additemmodel> model,ArrayList<categorymodel> model2, Context context) {
+    public ModifyCategoryAdapter(ArrayList<additemmodel> model,ArrayList<categorymodel> model2, Context context) {
 
         this.model = model;
         this.context = context;
@@ -37,20 +38,20 @@ public class additem extends RecyclerView.Adapter<additem.viewholder> {
 
     @NonNull
     @Override
-    public additem.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ModifyCategoryAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.additem_layout,parent,false);
-        return new viewholder(v);
+        return new ModifyCategoryAdapter.viewholder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull additem.viewholder holder, int position) {
+    public void onBindViewHolder(@NonNull ModifyCategoryAdapter.viewholder holder, int position) {
         Glide.with(context).load(model2.get(position).getImageurl()).fitCenter().diskCacheStrategy(DiskCacheStrategy.ALL).dontTransform().into(holder.iv);
         holder.tv.setText(model.get(position).getCategoryname());
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, Add_new_item.class);
+                Intent i = new Intent(context, ModifyCategorypage.class);
                 i.putExtra("categoryname",model.get(position).getCategoryname());
                 context.startActivity(i);
             }
@@ -79,6 +80,7 @@ public class additem extends RecyclerView.Adapter<additem.viewholder> {
 
 
     }
+
 
 
 }

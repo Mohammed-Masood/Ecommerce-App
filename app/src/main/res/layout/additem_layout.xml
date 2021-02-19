@@ -3,26 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="280dp"
-    android:background="#00FFFFFF">
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/additem_cv"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:background="@android:color/transparent"
         app:cardBackgroundColor="@android:color/transparent"
-        app:cardCornerRadius="0dp"
-        app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:cardCornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/additem_iv"
@@ -47,13 +43,11 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="144dp"
                 android:layout_marginRight="144dp"
-                android:layout_marginBottom="14dp"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:text="ItemName"
                 android:textColor="#373636"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/additem_iv" />

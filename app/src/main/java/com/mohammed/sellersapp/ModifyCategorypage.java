@@ -9,7 +9,6 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -19,111 +18,157 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.mohammed.sellersapp.Model.additemmodel;
 import com.mohammed.sellersapp.Model.categorymodel;
 
 import java.util.HashMap;
 
-public class Create_Category extends AppCompatActivity {
+public class ModifyCategorypage extends AppCompatActivity {
 
-    EditText category_name;
-    ImageView image;
-    Button add_btn;
-    TextView errormsg;
+    EditText et;
+    String path;
+    ImageView iv;
+    Button savechanges;
+    DatabaseReference currentroot;
+    DatabaseReference urlroot;
+    Uri imageuri;
     ProgressBar progressBar;
-
-    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("Category");
-    private StorageReference storage = FirebaseStorage.getInstance().getReference();
-    private Uri imageuri;
+    StorageReference storage = FirebaseStorage.getInstance().getReference();
+    TextView errormsg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create__category);
-
-        category_name = (EditText) findViewById(R.id.categoryname_et);
-        image = (ImageView) findViewById(R.id.category_image);
-        add_btn = (Button) findViewById(R.id.addcategory_btn);
-        errormsg = (TextView) findViewById(R.id.errorcategory_txt);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar_category);
-
-
+        setContentView(R.layout.activity_modify_categorypage);
+        errormsg = (TextView) findViewById(R.id.err);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar2);
         progressBar.setVisibility(View.INVISIBLE);
+        savechanges = (Button)findViewById(R.id.savechanges_category);
+        iv = (ImageView)findViewById(R.id.categoryimage_modify);
+        et = (EditText) findViewById(R.id.categoryname_modify);
+        path = getIntent().getStringExtra("categoryname");
+        currentroot = FirebaseDatabase.getInstance().getReference("Category").child(path).child("CategoryFiles");
+        urlroot = currentroot.child("Uri");
+        savechangesbutton();
+        buttonimageclick();
+        currentroot.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-            imageonclick();
-            UploadData();
+
+
+                    additemmodel cn = snapshot.getValue(additemmodel.class);
+                    String categoryname = cn.getCategoryname();
+                    et.setText(categoryname);
+
+
+                urlroot.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        categorymodel ci = snapshot.getValue(categorymodel.class);
+                        Glide.with(ModifyCategorypage.this).load(ci.getImageurl()).fitCenter().diskCacheStrategy(DiskCacheStrategy.ALL).dontTransform().into(iv);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
 
     }
 
+    public void buttonimageclick(){
 
-
-public void imageonclick(){
-
-        image.setOnClickListener(new View.OnClickListener() {
+        iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent gallary = new Intent();
                 gallary.setAction(Intent.ACTION_GET_CONTENT);
                 gallary.setType("image/*");
+                startActivity(gallary);
                 startActivityForResult(gallary,2);
 
             }
         });
 
-}
-
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == 2 && resultCode == RESULT_OK && data != null){
+        if(requestCode == 2 && resultCode == RESULT_OK && data !=null){
 
             imageuri = data.getData();
-            image.setImageURI(imageuri);
-
+            iv.setImageURI(imageuri);
 
         }
-
-
     }
 
+public void savechangesbutton(){
 
-    public void UploadData(){
 
-        add_btn.setOnClickListener(new View.OnClickListener() {
+        savechanges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(imageuri != null){
-                    if(TextUtils.isEmpty(category_name.getText())){
-                        errormsg.setText("Please Input A Category Name!");
-
-                    }else{
-
-                        uploadtofirebase(imageuri);
-                    }
+                if(TextUtils.isEmpty(et.getText())){
 
                 }else{
 
-                    errormsg.setText("Please Select An Image!");
+                    uploadtofirebase(imageuri);
+
+
+
+
+
 
                 }
+
+
+
+
 
             }
         });
 
 
-    }
+
+
+
+
+
+
+
+}
+
 
     public void uploadtofirebase(Uri uri){
-
         StorageReference fileref = storage.child(System.currentTimeMillis() + "." + getfilextention(uri));
         fileref.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
 
@@ -137,16 +182,14 @@ public void imageonclick(){
                     @Override
                     public void onSuccess(Uri uri) {
                         progressBar.setVisibility(View.INVISIBLE);
-                        errormsg.setText("Category Added Successfully");
+                        errormsg.setText("Item Added Successfully!!");
 
                         HashMap<String,Object> hashmap = new HashMap<>();
-
+                        String newname = et.getText().toString();
+                        hashmap.put("CategoryName",newname);
                         categorymodel model = new categorymodel(uri.toString());
-                        String modelid = root.child(category_name.getText().toString()).getKey();
                         hashmap.put("Uri",model);
-                        hashmap.put("CategoryName",modelid);
-                        root.child(modelid).child("CategoryFiles").setValue(hashmap);
-
+                        currentroot.setValue(hashmap);
 
                     }
                 });
@@ -174,6 +217,4 @@ public void imageonclick(){
         return map.getExtensionFromMimeType(cr.getType(uri));
 
     }
-
-
 }

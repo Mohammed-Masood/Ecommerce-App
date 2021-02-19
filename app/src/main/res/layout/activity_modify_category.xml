@@ -5,36 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/create_category_gradient"
-    tools:context=".Add_Item">
+    tools:context=".ModifyCategory">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/additem_rv"
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginTop="37dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="69dp"
+        android:layout_marginRight="69dp"
         android:fontFamily="sans-serif-condensed-medium"
-        android:text="Select A Category To Add Items Into"
-        android:textColor="#303030"
-        android:textSize="20sp"
+        android:text="Select A Category To Modify"
+        android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
