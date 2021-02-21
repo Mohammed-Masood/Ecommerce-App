@@ -18,18 +18,21 @@ public class MainActivity extends AppCompatActivity {
     Intent Delete_Category;
     Intent Delete_Item;
     Intent Modify_Category;
-    Button btn,btn2,btn3,btn4,btn5;
+    Intent Modify_Items;
+    Button btn,btn2,btn3,btn4,btn5,btn6;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        btn6 = (Button) findViewById(R.id.button5);
         btn4 = (Button) findViewById(R.id.del_it);
         btn = (Button) findViewById(R.id.button);
         create_Category = new Intent(this,Create_Category.class);
         add_item = new Intent(this,Add_Item.class);
         Delete_Category = new Intent(this,delete_Category.class);
+        Modify_Items = new Intent(this,ModifyItems.class);
         Delete_Item = new Intent(MainActivity.this,delete_Item.class);
         Modify_Category = new Intent(MainActivity.this,ModifyCategory.class);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +69,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(Modify_Category);
+            }
+        });
+        btn6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(Modify_Items);
             }
         });
 

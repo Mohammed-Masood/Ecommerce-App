@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/create_category_gradient"
+    android:background="@drawable/newgradient"
     tools:context=".ModifyCategorypage">
 
     <ImageView
@@ -21,34 +21,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_add_a_photo_24" />
 
-    <EditText
-        android:id="@+id/categoryname_modify"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:ems="10"
-        android:hint="CategoryName"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categoryimage_modify" />
-
     <Button
         android:id="@+id/savechanges_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:background="@drawable/newgradient"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="Save Changes"
+        android:textColor="#4C4B4B"
         android:textSize="24sp"
         android:textStyle="bold"
         app:backgroundTint="@android:color/transparent"
@@ -64,26 +49,61 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="181dp"
         android:layout_marginLeft="181dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="76dp"
         android:layout_marginEnd="182dp"
         android:layout_marginRight="182dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categoryname_modify" />
+        app:layout_constraintTop_toTopOf="@+id/err" />
 
     <TextView
         android:id="@+id/err"
+        android:layout_width="369dp"
+        android:layout_height="139dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Note : You Cannot Change The Name Of The Category , Consider Deleting It If Necessary"
+        android:textColor="#D51717"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.238"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/modify_testname" />
+
+    <TextView
+        android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginLeft="116dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="117dp"
+        android:layout_marginRight="117dp"
         android:fontFamily="sans-serif-condensed-medium"
-        android:text="TextView"
-        android:textColor="#D51717"
-        android:textSize="20sp"
+        android:text="You Are Modifying"
+        android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
+        app:layout_constraintTop_toBottomOf="@+id/categoryimage_modify" />
+
+    <TextView
+        android:id="@+id/modify_testname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="129dp"
+        android:layout_marginLeft="129dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginRight="130dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="{Category}"
+        android:textColor="#093F68"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 </androidx.constraintlayout.widget.ConstraintLayout>

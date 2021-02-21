@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SellersApp">
-        <activity android:name=".ModifyCategorypage"></activity>
+        <activity android:name=".ModifyItemPage"></activity>
+        <activity android:name=".ModifyItems_DisplayItems" />
+        <activity android:name=".ModifyItems" />
+        <activity android:name=".ModifyCategorypage" />
         <activity android:name=".ModifyCategory" />
         <activity android:name=".delete_item2" />
         <activity android:name=".delete_Item" />

@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="lime">#15e618</color>
+    <color name="top">#d19028</color>
 </resources>
