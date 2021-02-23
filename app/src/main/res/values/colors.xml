@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="lime">#15e618</color>
     <color name="top">#d19028</color>
+    <color name="topalpha">#F5D19028</color>
 </resources>
