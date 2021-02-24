@@ -72,6 +72,7 @@ public class Modify_displatitemsadapter extends RecyclerView.Adapter<Modify_disp
                 i.putExtra("itemstock",iteminformation.get(position).isInStock());
                 i.putExtra("path",path);
                 i.putExtra("key",key.get(position));
+                i.putExtra("amount",iteminformation.get(position).getAmount());
 
                 context.startActivity(i);
 

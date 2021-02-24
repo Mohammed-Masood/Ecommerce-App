@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SellersApp">
-        <activity android:name=".base_items"></activity>
+        <activity android:name=".base_descriptive_item"></activity>
+        <activity android:name=".base_items" />
         <activity android:name=".ModifyItemPage" />
         <activity android:name=".ModifyItems_DisplayItems" />
         <activity android:name=".ModifyItems" />
@@ -22,8 +23,9 @@
         <activity android:name=".Add_Item" />
         <activity android:name=".Create_Category" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".BaseActivity">
-            <intent-filter>
+        <activity android:name=".BaseActivity" >
+
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />

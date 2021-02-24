@@ -34,7 +34,7 @@ import java.util.HashMap;
 public class Add_new_item extends AppCompatActivity {
 
         ImageView iv;
-        EditText itemname_et,price_et;
+        EditText itemname_et,price_et,amount;
         Button add_btn;
         TextView errormsg;
         CheckBox instock;
@@ -53,6 +53,7 @@ public class Add_new_item extends AppCompatActivity {
         setContentView(R.layout.activity_add_new_item);
         stock =false;
         iv = (ImageView) findViewById(R.id.additem_addimage);
+        amount = (EditText) findViewById(R.id.additem_amtstock);
         itemname_et = (EditText) findViewById(R.id.additem_itemname);
         price_et = (EditText) findViewById(R.id.additem_itemprice);
         add_btn = (Button) findViewById(R.id.additem_btn);
@@ -159,6 +160,12 @@ public class Add_new_item extends AppCompatActivity {
                             stock = false;
                         }
                         hashmap.put("InStock",stock);
+                        String amountinstock = amount.getText().toString();
+                        if(TextUtils.isEmpty(amount.getText())){
+                            hashmap.put("Amount","0");
+                        }else {
+                            hashmap.put("Amount", amountinstock);
+                        }
 
                         c.child("ItemFiles").push().setValue(hashmap);
 

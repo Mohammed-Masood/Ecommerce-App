@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.SearchView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -25,13 +27,14 @@ public class BaseActivity extends AppCompatActivity {
     ArrayList<categorymodel> category_images;
     ArrayList<additemmodel>  category_name;
     DatabaseReference root = FirebaseDatabase.getInstance().getReference("Category");
+    ImageView profile,cart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
 
         create();
-
+        onclicks();
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -71,6 +74,21 @@ public class BaseActivity extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
         category_images = new ArrayList<>();
         category_name = new ArrayList<>();
+        profile = (ImageView) findViewById(R.id.myprofile_iv);
+        cart = (ImageView) findViewById(R.id.mycart_iv);
+
+
+    }
+
+    public void onclicks(){
+
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
 
 
     }

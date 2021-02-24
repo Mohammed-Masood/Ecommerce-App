@@ -67,7 +67,7 @@ public class displayitems extends RecyclerView.Adapter<displayitems.viewholder> 
         }else{
             holder.available.setText("Out Of Stock");
         }
-        holder.itemprice.setText(iteminformation.get(position).getPrice());
+        holder.itemprice.setText(iteminformation.get(position).getPrice() + "$");
         holder.itemname.setText(iteminformation.get(position).getItemName());
 
         Glide.with(context).load(itemimage.get(position).getImageurl()).fitCenter().diskCacheStrategy(DiskCacheStrategy.ALL).dontTransform().into(holder.iv);

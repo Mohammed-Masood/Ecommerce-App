@@ -5,14 +5,25 @@ public class itemmodel {
     boolean InStock;
     String ItemName;
     String Price;
+    String Amount;
 
-    public itemmodel(boolean inStock, String itemName, String price) {
+    public itemmodel(boolean inStock, String itemName, String price,String Amount) {
         InStock = inStock;
         ItemName = itemName;
         Price = price;
+        this.Amount = Amount;
     }
 
+
     public itemmodel() {
+    }
+
+    public String getAmount() {
+        return Amount;
+    }
+
+    public void setAmount(String amount) {
+        Amount = amount;
     }
 
     public boolean isInStock() {

@@ -37,7 +37,7 @@ public class ModifyItemPage extends AppCompatActivity {
 
 
    ImageView iv;
-   EditText item_name,Item_price;
+   EditText item_name,Item_price,amount;
    CheckBox in_stock;
    TextView errormsg;
    Button savechanges;
@@ -55,6 +55,8 @@ public class ModifyItemPage extends AppCompatActivity {
         checker =0;
         path = getIntent().getStringExtra("path");
         key =getIntent().getStringExtra("key");
+        amount = (EditText) findViewById(R.id.modify_amtstock);
+        amount.setText(getIntent().getStringExtra("amount"));
         progressBar = (ProgressBar)findViewById(R.id.progressBar23);
         progressBar.setVisibility(View.INVISIBLE);
         iv = (ImageView) findViewById(R.id.modify_item_img);
@@ -164,6 +166,14 @@ public class ModifyItemPage extends AppCompatActivity {
                        hashmap.put("InStock",in_stock.isChecked());
                        hashmap.put("ItemName",item_name.getText().toString());
                        hashmap.put("Price",Item_price.getText().toString());
+                        String amountinstock = amount.getText().toString();
+                        if(TextUtils.isEmpty(amount.getText())){
+                            hashmap.put("Amount","0");
+                        }else {
+                            hashmap.put("Amount", amountinstock);
+                        }
+
+
                         categorymodel model = new categorymodel(uri.toString());
                         hashmap.put("Uri",model);
 

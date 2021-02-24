@@ -26,6 +26,7 @@ public class base_items extends AppCompatActivity {
     DatabaseReference dbrf;
     ArrayList<itemmodel> items;
     ArrayList<categorymodel> images;
+    ArrayList<String> key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class base_items extends AppCompatActivity {
 
                 items.clear();
                 images.clear();
-
+                key.clear();
                 for(DataSnapshot snap:snapshot.getChildren()){
 
                     itemmodel item = snap.getValue(itemmodel.class);
@@ -48,8 +49,9 @@ public class base_items extends AppCompatActivity {
 
                     items.add(item);
                     images.add(image);
+                    key.add(snap.getKey());
                 }
-                base_item_adapter adapter = new base_item_adapter(base_items.this,items,images);
+                base_item_adapter adapter = new base_item_adapter(base_items.this,items,images,CategoryName,key);
                 rv.setAdapter(adapter);
 
 
@@ -70,6 +72,7 @@ public class base_items extends AppCompatActivity {
         dbrf = FirebaseDatabase.getInstance().getReference("Category").child(CategoryName).child("ItemFiles");
         items = new ArrayList<>();
         images = new ArrayList<>();
+        key = new ArrayList<>();
 
 
     }
