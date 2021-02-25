@@ -8,17 +8,27 @@ public class Usermodel {
     String Lastname;
     String Phonenumber;
     boolean isadmin;
+    String key;
 
-    public Usermodel(String username, String password, String firstname, String lastname, String phonenumber,boolean isadmin) {
+    public Usermodel(String username, String password, String firstname, String lastname, String phonenumber,boolean isadmin,String key) {
         Username = username;
         Password = password;
         Firstname = firstname;
         Lastname = lastname;
         Phonenumber = phonenumber;
         this.isadmin = isadmin;
+        this.key = key;
     }
     public Usermodel(){
 
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public boolean isIsadmin() {

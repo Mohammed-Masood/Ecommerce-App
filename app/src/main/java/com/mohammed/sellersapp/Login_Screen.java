@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mohammed.sellersapp.Model.Usermodel;
+import com.mohammed.sellersapp.Model.additemmodel;
 
 import java.util.ArrayList;
 
@@ -73,6 +74,7 @@ public class Login_Screen extends AppCompatActivity {
                     Usermodel user = snap.getValue(Usermodel.class);
                     all_users.add(user);
 
+
                 }
 
 
@@ -121,6 +123,8 @@ public class Login_Screen extends AppCompatActivity {
                 SharedPreferences.Editor logeditor = log.edit();
                 if(account_exists == true){
 
+
+
                     error_log.setText("Logged In!");
                     Intent i = new Intent(Login_Screen.this,BaseActivity.class);
                     i.putExtra("loggedin",true);
@@ -133,6 +137,7 @@ public class Login_Screen extends AppCompatActivity {
                     editor.putString("Phonenumber",loggedin.getPhonenumber());
                     editor.putString("Username",loggedin.getUsername());
                     editor.putBoolean("isadmin",loggedin.isIsadmin());
+                    editor.putString("key",loggedin.getKey());
                     logeditor.putBoolean("isloggedin",true);
                     editor.commit();
                     logeditor.commit();

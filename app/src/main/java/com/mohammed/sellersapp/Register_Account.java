@@ -31,6 +31,7 @@ public class Register_Account extends AppCompatActivity {
     TextView tv;
     boolean invalid_username;
     ArrayList<String> all_usernames;
+
     DatabaseReference root = FirebaseDatabase.getInstance().getReference("Accounts");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class Register_Account extends AppCompatActivity {
         tv = (TextView) findViewById(R.id.register_error_et);
         all_usernames = new ArrayList<>();
         invalid_username = false;
+
     }
 
     public void buttonclick(){
@@ -128,7 +130,9 @@ public class Register_Account extends AppCompatActivity {
             hashMap.put("Lastname",ln_et.getText().toString());
             hashMap.put("Phonenumber",phonenumber_et.getText().toString());
             hashMap.put("isadmin",false);
-            root.child("Normal Users").push().setValue(hashMap);
+           String sr= root.child("Normal Users").push().getKey();
+           hashMap.put("key",sr);
+            root.child("Normal Users").child(sr).setValue(hashMap);
             tv.setText("Account Created");
 
             Intent i = new Intent(Register_Account.this,Login_Screen.class);

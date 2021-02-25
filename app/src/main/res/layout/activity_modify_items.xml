@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/newgradient"
+    android:background="@drawable/greygradient"
     tools:context=".ModifyItems">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView11"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView13" />
 
     <TextView
         android:id="@+id/textView10"
@@ -23,16 +23,25 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="119dp"
         android:layout_marginLeft="119dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="119dp"
         android:layout_marginRight="119dp"
-        android:layout_marginBottom="5dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="Select A Category"
+        android:textColor="@color/top"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:srcCompat="@drawable/lineorange" />
 </androidx.constraintlayout.widget.ConstraintLayout>
