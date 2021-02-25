@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,6 +31,8 @@ public class BaseActivity extends AppCompatActivity {
     ArrayList<additemmodel>  category_name;
     DatabaseReference root = FirebaseDatabase.getInstance().getReference("Category");
     ImageView profile,cart;
+    boolean loggedin;
+    SharedPreferences log;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +81,8 @@ public class BaseActivity extends AppCompatActivity {
         category_name = new ArrayList<>();
         profile = (ImageView) findViewById(R.id.myprofile_iv);
         cart = (ImageView) findViewById(R.id.mycart_iv);
+        log = getApplicationContext().getSharedPreferences("loggedin", Context.MODE_PRIVATE);
+        loggedin = log.getBoolean("isloggedin",false);
 
 
     }
@@ -85,6 +92,17 @@ public class BaseActivity extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            if(loggedin == true){
+
+                Intent i = new Intent(BaseActivity.this,MyProfile.class);
+                startActivity(i);
+
+            }else{
+
+                Intent i = new Intent(BaseActivity.this,Login_Screen.class);
+                startActivity(i);
+
+            }
 
             }
         });
