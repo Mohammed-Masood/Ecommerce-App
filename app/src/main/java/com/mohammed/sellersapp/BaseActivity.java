@@ -107,7 +107,16 @@ public class BaseActivity extends AppCompatActivity {
             }
         });
 
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent i = new Intent(BaseActivity.this,MyCart.class);
+                startActivity(i);
+
+
+            }
+        });
 
     }
 

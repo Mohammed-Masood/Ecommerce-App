@@ -10,6 +10,7 @@ public class Usermodel {
     boolean isadmin;
     String key;
 
+
     public Usermodel(String username, String password, String firstname, String lastname, String phonenumber,boolean isadmin,String key) {
         Username = username;
         Password = password;
@@ -18,10 +19,13 @@ public class Usermodel {
         Phonenumber = phonenumber;
         this.isadmin = isadmin;
         this.key = key;
+
     }
     public Usermodel(){
 
     }
+
+
 
     public String getKey() {
         return key;

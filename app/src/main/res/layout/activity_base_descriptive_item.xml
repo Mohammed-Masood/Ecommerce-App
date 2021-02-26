@@ -7,42 +7,6 @@
     android:background="@drawable/greygradient"
     tools:context=".base_descriptive_item">
 
-    <EditText
-        android:id="@+id/base_descriptive_location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:ems="10"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:hint="City/Area/Building/FlatNumber"
-        android:inputType="textPersonName"
-        android:textColor="#F1EEEE"
-        android:textColorHint="#6BFFFFFF"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
-
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="19dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="Location -"
-        android:textColor="@color/top"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/base_descriptive_amountrequired" />
-
     <ImageView
         android:id="@+id/base_descriptive_iv"
         android:layout_width="250dp"
@@ -76,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/base_descriptive_iv" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/addtocart_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -87,7 +51,7 @@
         android:layout_marginBottom="16dp"
         android:background="@color/top"
         android:fontFamily="sans-serif-condensed-medium"
-        android:text="Order Now"
+        android:text="Add To Cart"
         android:textColor="#E82222"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -104,14 +68,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="48dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="Total Price -"
         android:textColor="#72981A"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/base_descriptive_location" />
+        app:layout_constraintTop_toBottomOf="@+id/descriptive_items_error" />
 
     <TextView
         android:id="@+id/base_descriptive_itemprice"
@@ -119,14 +83,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="48dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="0$"
         android:textColor="#3AA32F"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/base_descriptive_location" />
+        app:layout_constraintTop_toBottomOf="@+id/descriptive_items_error" />
 
     <TextView
         android:id="@+id/textView17"
@@ -134,7 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="35dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="Amount In Stock -"
         android:textColor="@color/top"
@@ -149,7 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
         android:layout_marginLeft="17dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="35dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="10"
         android:textColor="#3AA32F"
@@ -164,7 +128,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="35dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="How Much Do You Require -"
         android:textColor="@color/top"
@@ -194,5 +158,21 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+    <TextView
+        android:id="@+id/descriptive_items_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:textColor="#EA4747"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/base_descriptive_amountrequired" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

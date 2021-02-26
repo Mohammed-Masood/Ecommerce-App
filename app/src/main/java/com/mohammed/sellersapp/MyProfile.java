@@ -70,6 +70,7 @@ public class MyProfile extends AppCompatActivity {
                 editor.putString("Phonenumber","");
                 editor.putString("Username","");
                 editor.putBoolean("isadmin",false);
+                editor.putString("key","");
                 logeditor.putBoolean("isloggedin",false);
                 editor.commit();
                 logeditor.commit();

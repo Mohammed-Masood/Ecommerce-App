@@ -3,15 +3,20 @@ package com.mohammed.sellersapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -25,6 +30,8 @@ import com.mohammed.sellersapp.Model.itemmodel;
 
 import org.w3c.dom.Text;
 
+import java.util.HashMap;
+
 public class base_descriptive_item extends AppCompatActivity {
 
     String Categoryname;
@@ -33,8 +40,15 @@ public class base_descriptive_item extends AppCompatActivity {
     itemmodel item;
     categorymodel image;
     ImageView iv;
-    TextView itemname,itemprice,itemamount;
-    EditText amountrequired,location;
+    TextView itemname,itemprice,itemamount,error;
+    EditText amountrequired;
+    Button addtocart;
+    DatabaseReference orders;
+    SharedPreferences userdetails;
+    SharedPreferences log;
+    boolean isloggedin;
+    String key;
+    int totalprice;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +56,7 @@ public class base_descriptive_item extends AppCompatActivity {
 
             create();
         onAmountChange();
+
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -56,6 +71,7 @@ public class base_descriptive_item extends AppCompatActivity {
                 itemname.setText(item.getItemName());
                 itemamount.setText(item.getAmount());
                 itemprice.setText(item.getPrice() + "$");
+                totalprice = Integer.parseInt(item.getPrice());
             }
 
             @Override
@@ -63,7 +79,7 @@ public class base_descriptive_item extends AppCompatActivity {
 
             }
         });
-
+        buttonlisteners();
 
     }
 
@@ -74,10 +90,18 @@ public class base_descriptive_item extends AppCompatActivity {
         iv = (ImageView) findViewById(R.id.base_descriptive_iv);
         itemname = (TextView) findViewById(R.id.base_descriptive_itemname);
         amountrequired = (EditText) findViewById(R.id.base_descriptive_amountrequired);
-        location = (EditText) findViewById(R.id.base_descriptive_location);
+
         itemprice = (TextView) findViewById(R.id.base_descriptive_itemprice);
         itemamount = (TextView) findViewById(R.id.amount_in_stock);
         amountrequired.setText("1");
+        addtocart = (Button) findViewById(R.id.addtocart_btn);
+        userdetails = getSharedPreferences("UserDetails",MODE_PRIVATE);
+        log = getSharedPreferences("loggedin", MODE_PRIVATE);
+        isloggedin = log.getBoolean("isloggedin",false);
+        key = userdetails.getString("key","");
+        error = (TextView) findViewById(R.id.descriptive_items_error);
+
+
 
     }
 
@@ -96,6 +120,7 @@ public class base_descriptive_item extends AppCompatActivity {
                int temp = Integer.parseInt(item.getPrice());
                int temp2 = Integer.parseInt(s.toString());
                itemprice.setText(temp * temp2 + "$");
+               totalprice = temp*temp2;
            }catch (NumberFormatException e){
                itemprice.setText("0$");
 
@@ -110,6 +135,63 @@ public class base_descriptive_item extends AppCompatActivity {
 
            }
        });
+
+
+    }
+
+    public void buttonlisteners(){
+
+        addtocart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(isloggedin){
+
+                    orders = FirebaseDatabase.getInstance().getReference("Accounts").child("Normal Users").child(key);
+
+                    if(TextUtils.isEmpty(amountrequired.getText())){
+                            error.setText("Please Fill In All The Fields");
+                        }else{
+                        int amnt = Integer.parseInt(amountrequired.getText().toString());
+                        int available_amnt = Integer.parseInt(itemamount.getText().toString());
+                        if(amnt > available_amnt){
+
+                        error.setText("We Do Not Have That Many Available");
+                        }else{
+                            if(amnt ==0){
+                                error.setText("You Cant Order 0 Items");
+                            }else {
+
+                                HashMap<String, Object> cart = new HashMap<>();
+                                cart.put("ItemKey", Key);
+                                cart.put("AmountRequired", amnt);
+                                cart.put("TotalPrice", totalprice);
+                                String Orderkey =  orders.child("Cart").push().getKey();
+                                cart.put("OrderKey",Orderkey);
+                                cart.put("Categoryname",Categoryname);
+                                orders.child("Cart").child(Orderkey).setValue(cart);
+                                error.setText("Item Has Been Added To Your Cart");
+
+
+                            }
+                        }
+
+
+                    }
+
+                }else{
+
+                    Intent i = new Intent(base_descriptive_item.this,Login_Screen.class);
+                    startActivity(i);
+
+                }
+
+
+
+
+            }
+        });
+
 
 
     }
