@@ -1,6 +1,7 @@
 package com.mohammed.sellersapp.Adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,11 +29,14 @@ public class mycartadapter extends RecyclerView.Adapter<mycartadapter.viewholder
 
     ArrayList<OrderModel> orders;
     Context context;
-
+    DatabaseReference newroot;
 
     public mycartadapter(ArrayList<OrderModel> orders, Context context) {
         this.orders = orders;
         this.context = context;
+
+        newroot = FirebaseDatabase.getInstance().getReference("Accounts").child("Normal Users");
+
     }
 
     @NonNull
@@ -48,6 +52,9 @@ public class mycartadapter extends RecyclerView.Adapter<mycartadapter.viewholder
 
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
+
+
+
 
         holder.totalprice.setText(String.valueOf(orders.get(position).getTotalPrice()) + "$");
         holder.amount.setText(String.valueOf(orders.get(position).getAmountRequired()));
@@ -84,6 +91,16 @@ public class mycartadapter extends RecyclerView.Adapter<mycartadapter.viewholder
             }
         });
 
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseReference newnewroot = newroot.child(orders.get(position).getUserid()).child("Cart").child(orders.get(position).getOrderKey());
+                newnewroot.removeValue();
+
+
+            }
+        });
+
     }
 
     @Override
@@ -94,12 +111,12 @@ public class mycartadapter extends RecyclerView.Adapter<mycartadapter.viewholder
     public class viewholder extends RecyclerView.ViewHolder{
 
         TextView amount,itemname,totalprice;
-        ImageView iv;
+        ImageView iv,delete;
 
         public viewholder(@NonNull View itemView) {
 
             super(itemView);
-
+            delete = itemView.findViewById(R.id.delete_mycartitem);
             amount = itemView.findViewById(R.id.mycart_itemamount);
             itemname = itemView.findViewById(R.id.mycart_itemname);
             totalprice = itemView.findViewById(R.id.mycart_pricetag);

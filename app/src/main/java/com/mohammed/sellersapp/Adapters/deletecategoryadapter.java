@@ -16,10 +16,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.mohammed.sellersapp.Model.additemmodel;
 import com.mohammed.sellersapp.Model.categorymodel;
+import com.mohammed.sellersapp.Model.fbordermodel;
 import com.mohammed.sellersapp.R;
 import com.mohammed.sellersapp.delete_Category;
 
@@ -34,6 +38,7 @@ public class deletecategoryadapter extends RecyclerView.Adapter<deletecategoryad
     CardView cardView;
     TextView displayname;
     DatabaseReference root = FirebaseDatabase.getInstance().getReference("Category");
+    DatabaseReference orderroot = FirebaseDatabase.getInstance().getReference("Order");
 
     public deletecategoryadapter(ArrayList<categorymodel> url, ArrayList<additemmodel> categoryname, Context context, Button yes, Button no, CardView cardView, TextView displayname) {
         this.url = url;
@@ -72,6 +77,10 @@ public class deletecategoryadapter extends RecyclerView.Adapter<deletecategoryad
             public void onClick(View v) {
             root.child(holder.name.getText().toString()).removeValue();
                 cardView.setVisibility(View.INVISIBLE);
+
+              orderroot.removeValue();
+
+
 
             }
         });

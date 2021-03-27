@@ -39,7 +39,7 @@ public class base_descriptive_item extends AppCompatActivity {
     DatabaseReference root;
     itemmodel item;
     categorymodel image;
-    ImageView iv;
+    ImageView iv,check;
     TextView itemname,itemprice,itemamount,error;
     EditText amountrequired;
     Button addtocart;
@@ -48,7 +48,7 @@ public class base_descriptive_item extends AppCompatActivity {
     SharedPreferences log;
     boolean isloggedin;
     String key;
-    int totalprice;
+    int totalprice,oldamnt,newamnt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,10 +66,11 @@ public class base_descriptive_item extends AppCompatActivity {
 
                 image = snapshot.child("Uri").getValue(categorymodel.class);
 
-                Glide.with(base_descriptive_item.this).load(image.getImageurl()).fitCenter().diskCacheStrategy(DiskCacheStrategy.ALL).dontTransform().into(iv);
+                Glide.with(getApplicationContext()).load(image.getImageurl()).fitCenter().diskCacheStrategy(DiskCacheStrategy.ALL).dontTransform().into(iv);
 
                 itemname.setText(item.getItemName());
                 itemamount.setText(item.getAmount());
+                oldamnt =Integer.parseInt(item.getAmount());
                 itemprice.setText(item.getPrice() + "$");
                 totalprice = Integer.parseInt(item.getPrice());
             }
@@ -100,6 +101,8 @@ public class base_descriptive_item extends AppCompatActivity {
         isloggedin = log.getBoolean("isloggedin",false);
         key = userdetails.getString("key","");
         error = (TextView) findViewById(R.id.descriptive_items_error);
+        check = (ImageView) findViewById(R.id.check);
+        check.setVisibility(View.INVISIBLE);
 
 
 
@@ -162,6 +165,19 @@ public class base_descriptive_item extends AppCompatActivity {
                                 error.setText("You Cant Order 0 Items");
                             }else {
 
+                                if(oldamnt-amnt == 0){
+                                    newamnt = oldamnt-amnt;
+                                    String i =String.valueOf(newamnt);
+                                    root.child("Amount").setValue(i);
+                                    root.child("InStock").setValue(false);
+
+                                }else{
+                                    newamnt = oldamnt-amnt;
+                                    newamnt = oldamnt-amnt;
+                                    String i =String.valueOf(newamnt);
+                                root.child("Amount").setValue(i);
+                                }
+
                                 HashMap<String, Object> cart = new HashMap<>();
                                 cart.put("ItemKey", Key);
                                 cart.put("AmountRequired", amnt);
@@ -169,8 +185,11 @@ public class base_descriptive_item extends AppCompatActivity {
                                 String Orderkey =  orders.child("Cart").push().getKey();
                                 cart.put("OrderKey",Orderkey);
                                 cart.put("Categoryname",Categoryname);
+                                cart.put("Userid",userdetails.getString("key",""));
                                 orders.child("Cart").child(Orderkey).setValue(cart);
-                                error.setText("Item Has Been Added To Your Cart");
+                                error.setText("");
+                                check.setVisibility(View.VISIBLE);
+                                finish();
 
 
                             }

@@ -204,6 +204,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="56dp"
         android:text="Register Account"
+        android:textColor="#FAF7F7"
         app:backgroundTint="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

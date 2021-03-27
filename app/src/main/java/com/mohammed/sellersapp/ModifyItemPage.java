@@ -159,7 +159,7 @@ public class ModifyItemPage extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         progressBar.setVisibility(View.INVISIBLE);
-                        errormsg.setText("Item Added Successfully!!");
+                        errormsg.setText("Item Modified Successfully!!");
 
                         HashMap<String,Object> hashmap = new HashMap<>();
 

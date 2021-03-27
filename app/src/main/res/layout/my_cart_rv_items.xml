@@ -33,21 +33,6 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/textView24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="13dp"
-                android:layout_marginLeft="13dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:text="ItemName"
-                android:textColor="@color/top"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/mycart_itemiv"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
                 android:id="@+id/textView29"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -71,7 +56,7 @@
                 android:layout_marginRight="16dp"
                 android:text="$$$"
                 android:textColor="#629711"
-                android:textSize="18sp"
+                android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
@@ -79,24 +64,26 @@
                 android:id="@+id/mycart_itemname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="13dp"
-                android:layout_marginLeft="13dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:text="{Item Name}"
-                android:textColor="#1B1818"
-                android:textSize="18sp"
+                android:textColor="#2E2E2E"
+                android:textSize="22sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/mycart_itemiv"
-                app:layout_constraintTop_toBottomOf="@+id/textView24" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView38"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="13dp"
                 android:fontFamily="sans-serif-condensed-medium"
-                android:text="Amount Of Items :"
+                android:text="Amount Of Items "
                 android:textColor="@color/top"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -109,11 +96,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="5dp"
                 android:text="{Amount}"
-                android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/textView38"
-                app:layout_constraintTop_toBottomOf="@+id/mycart_pricetag" />
+                android:textSize="22sp"
+                app:layout_constraintStart_toEndOf="@+id/mycart_itemiv"
+                app:layout_constraintTop_toBottomOf="@+id/textView38" />
+
+            <ImageView
+                android:id="@+id/delete_mycartitem"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mycart_pricetag"
+                app:srcCompat="@drawable/ic_baseline_delete_forever_24" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

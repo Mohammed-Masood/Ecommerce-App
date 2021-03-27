@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SellersApp">
-        <activity android:name=".MyCart"></activity>
+        <activity android:name=".order_items"></activity>
+        <activity android:name=".Admin_Order" />
+        <activity android:name=".MyCart" />
         <activity android:name=".Register_Account" />
         <activity android:name=".Login_Screen" />
         <activity android:name=".MyProfile" />

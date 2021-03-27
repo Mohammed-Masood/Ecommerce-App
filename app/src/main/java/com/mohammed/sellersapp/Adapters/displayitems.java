@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.mohammed.sellersapp.Model.additemmodel;
 import com.mohammed.sellersapp.Model.categorymodel;
 import com.mohammed.sellersapp.Model.itemmodel;
@@ -37,6 +38,7 @@ public class displayitems extends RecyclerView.Adapter<displayitems.viewholder> 
     Button yes,no;
     DatabaseReference root;
     String path;
+    DatabaseReference orderroot = FirebaseDatabase.getInstance().getReference("Order");
     public displayitems(Context context, ArrayList<itemmodel> iteminformation, ArrayList<categorymodel> itemimage, CardView cv, TextView enter, Button yes, Button no,DatabaseReference root,ArrayList<String> key,String path) {
         this.context = context;
         this.iteminformation = iteminformation;
@@ -84,6 +86,7 @@ public class displayitems extends RecyclerView.Adapter<displayitems.viewholder> 
                    public void onClick(View v) {
                        root.child(key.get(position)).removeValue();
                        cv.setVisibility(View.INVISIBLE);
+                       orderroot.removeValue();
 
                    }
                });

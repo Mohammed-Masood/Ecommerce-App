@@ -1,33 +1,21 @@
 package com.mohammed.sellersapp.Model;
 
-public class OrderModel {
+public class fbordermodel {
 
     int AmountRequired;
-    String Categoryname;
     String ItemKey;
-    String OrderKey;
     int TotalPrice;
-    String Userid;
+    String Categoryname;
 
 
-    public OrderModel(int amountRequired, String itemKey, String orderKey, int totalPrice,String Categoryname,String Userid) {
+    public fbordermodel(int amountRequired, String itemKey, int totalPrice,String Categoryname) {
         AmountRequired = amountRequired;
         ItemKey = itemKey;
-        OrderKey = orderKey;
         TotalPrice = totalPrice;
         this.Categoryname = Categoryname;
-        this.Userid = Userid;
     }
 
-    public OrderModel() {
-    }
-
-    public String getUserid() {
-        return Userid;
-    }
-
-    public void setUserid(String userid) {
-        Userid = userid;
+    public fbordermodel() {
     }
 
     public String getCategoryname() {
@@ -52,14 +40,6 @@ public class OrderModel {
 
     public void setItemKey(String itemKey) {
         ItemKey = itemKey;
-    }
-
-    public String getOrderKey() {
-        return OrderKey;
-    }
-
-    public void setOrderKey(String orderKey) {
-        OrderKey = orderKey;
     }
 
     public int getTotalPrice() {

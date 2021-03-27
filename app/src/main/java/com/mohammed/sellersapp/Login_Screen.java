@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +18,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mohammed.sellersapp.Model.Usermodel;
-import com.mohammed.sellersapp.Model.additemmodel;
 
 import java.util.ArrayList;
 
@@ -31,7 +29,7 @@ public class Login_Screen extends AppCompatActivity {
     DatabaseReference root = FirebaseDatabase.getInstance().getReference("Accounts").child("Normal Users");
     ArrayList<Usermodel> all_users;
     boolean account_exists;
-    Usermodel loggedin;
+    Usermodel loggedinuser;
     SharedPreferences sp;
     SharedPreferences log;
 
@@ -115,7 +113,7 @@ public class Login_Screen extends AppCompatActivity {
                     String Password = password_et.getText().toString();
                     if(user.getUsername().equalsIgnoreCase(Username) && user.getPassword().contentEquals(Password)){
                         account_exists = true;
-                        loggedin = user;
+                        loggedinuser = user;
                     }
 
                 }
@@ -131,13 +129,13 @@ public class Login_Screen extends AppCompatActivity {
 
                     SharedPreferences.Editor editor = sp.edit();
 
-                    editor.putString("Firstname",loggedin.getFirstname());
-                    editor.putString("Lastname",loggedin.getLastname());
-                    editor.putString("Password",loggedin.getPassword());
-                    editor.putString("Phonenumber",loggedin.getPhonenumber());
-                    editor.putString("Username",loggedin.getUsername());
-                    editor.putBoolean("isadmin",loggedin.isIsadmin());
-                    editor.putString("key",loggedin.getKey());
+                    editor.putString("Firstname", loggedinuser.getFirstname());
+                    editor.putString("Lastname", loggedinuser.getLastname());
+                    editor.putString("Password", loggedinuser.getPassword());
+                    editor.putString("Phonenumber", loggedinuser.getPhonenumber());
+                    editor.putString("Username", loggedinuser.getUsername());
+                    editor.putBoolean("isadmin", loggedinuser.isIsadmin());
+                    editor.putString("key", loggedinuser.getKey());
                     logeditor.putBoolean("isloggedin",true);
                     editor.commit();
                     logeditor.commit();

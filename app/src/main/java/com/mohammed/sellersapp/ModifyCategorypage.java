@@ -178,7 +178,7 @@ public void savechangesbutton(){
                     @Override
                     public void onSuccess(Uri uri) {
                         progressBar.setVisibility(View.INVISIBLE);
-                        errormsg.setText("Item Added Successfully!!");
+                        errormsg.setText("Category Modified Successfully!!!");
                         HashMap<String,Object> hashmap = new HashMap<>();
 
                         hashmap.put("CategoryName",path);
